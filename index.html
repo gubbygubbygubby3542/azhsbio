@@ -69,8 +69,9 @@ nav button.active{
 .heading{font-size:17px;color:var(--orange);margin-bottom:22px}
 .heading:before{content:"› ";color:var(--orange-light)}
 .friend{
- display:flex;align-items:center;gap:13px;padding:13px;background:#ffffff08;
- border:1px solid #ffffff18;border-radius:12px;margin-bottom:10px;transition:.25s;
+ display:flex;align-items:center;gap:13px;padding:13px;
+ background:#ffffff08;border:1px solid #ffffff18;border-radius:12px;
+ margin-bottom:10px;transition:.25s;
 }
 .friend:hover{border-color:#ff963b66;box-shadow:0 0 15px #ff963b20;transform:translateY(-2px)}
 .friend img{width:43px;height:43px;border-radius:50%;object-fit:cover}
@@ -111,50 +112,32 @@ button.item{cursor:pointer}
 .close:hover{color:white;border-color:var(--orange);box-shadow:0 0 12px #ff963b55}
 .modal p{color:#aaa;font-size:13px;line-height:1.8}
 footer{text-align:center;color:#666;font-size:11px;padding:25px}
-.music-control{
- position:fixed;z-index:5;bottom:20px;right:20px;display:flex;align-items:center;
- padding:14px 17px;background:rgba(20,18,16,.95);
- border:1px solid #ff963b77;border-radius:15px;backdrop-filter:blur(20px);
- box-shadow:0 5px 25px #0008,0 0 15px #ff963b20;transition:.25s;
-}
-.music-control:hover{box-shadow:0 5px 25px #0008,0 0 20px #ff963b44}
-#musicButton{
- width:36px;height:36px;display:grid;place-items:center;border-radius:11px;
- background:#ff963b20;border:1px solid #ff963b66;color:var(--orange-light);
- font-size:17px;transition:.25s;
-}
-#musicButton:hover{background:var(--orange);color:#160d06;box-shadow:0 0 18px #ff963b88;transform:scale(1.08)}
-#musicButton:active{transform:scale(.9)}
-.music-error{
- position:fixed;bottom:85px;right:20px;z-index:6;color:#ffad60;
- background:#17110d;border:1px solid #ff963b66;border-radius:9px;
- padding:10px 14px;font-size:11px;display:none;max-width:260px;
-}
 .about-details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:20px}
 .about-card{padding:13px;background:#ffffff08;border:1px solid #ffffff18;border-radius:12px;transition:.25s}
 .about-card:hover{border-color:#ff963b66;box-shadow:0 0 15px #ff963b20;transform:translateY(-2px)}
 .about-card small{display:block;color:#888;font-size:11px;margin-bottom:7px}
 .about-card strong{color:var(--orange-light);font-size:14px;font-weight:600}
-@media(max-width:500px){
- nav{gap:5px}nav button{padding:9px 12px}
- .music-control{bottom:12px;right:12px}
- .music-error{bottom:85px;right:12px}
-}
+@media(max-width:500px){nav{gap:5px}nav button{padding:9px 12px}}
 </style>
 </head>
 <body>
+
 <canvas id="particles"></canvas>
+
 <div class="container">
 <div class="glass">
+
 <section class="profile">
 <img class="avatar" src="https://placehold.co/200x200/171717/ff963b?text=azh" alt="Profile">
 <h1>azh</h1>
 </section>
+
 <nav>
 <button class="active" onclick="showTab('home',this)">Home</button>
 <button onclick="showTab('friends',this)">Friends</button>
 <button onclick="showTab('links',this)">Links</button>
 </nav>
+
 <section id="home" class="content active">
 <div class="heading">about me</div>
 <div class="about-details">
@@ -163,31 +146,45 @@ footer{text-align:center;color:#666;font-size:11px;padding:25px}
 <div class="about-card"><small>TIMEZONE</small><strong>CST</strong></div>
 </div>
 </section>
+
 <section id="friends" class="content">
 <div class="heading">my friends</div>
 <div class="friend">
-<img src="https://placehold.co/100x100/292929/ff963b?text=T" alt="Friend">
-<div class="friend-info">test<small>friend</small></div>
-<button onclick="openFriend('test','test')">View</button>
+<img src="https://placehold.co/100x100/292929/ff963b?text=O" alt="Osa">
+<div class="friend-info">
+osa
+<small>friend</small>
+</div>
+<button onclick='openFriend("osa","osa has been my friend for over a year and he is really cool and one of the best friends ive ever had and i love him very much he means alot to me")'>View</button>
 </div>
 </section>
+
 <section id="links" class="content">
 <div class="heading">my links</div>
-<a class="item" href="https://www.youtube.com/@Azhhhhhhh" target="_blank" rel="noopener noreferrer">YouTube ↗<small>@Azhhhhhhh</small></a>
-<button class="item" onclick="copyDiscord()">Discord · Copy username<small id="discordStatus">azhhhhhh</small></button>
+<a class="item" href="https://www.youtube.com/@Azhhhhhhh" target="_blank" rel="noopener noreferrer">
+YouTube ↗
+<small>@Azhhhhhhh</small>
+</a>
+<button class="item" onclick="copyDiscord()">
+Discord · Copy username
+<small id="discordStatus">azhhhhhh</small>
+</button>
 </section>
+
 </div>
 <footer>© 2026 azh · made with care</footer>
 </div>
+
 <div class="modal-bg" id="modal" onclick="backgroundClose(event)">
 <div class="modal">
-<div class="modal-top"><h2 id="friendName">test</h2><button class="close" onclick="closeFriend()">✕ Close</button></div>
-<p id="friendDescription">test</p>
+<div class="modal-top">
+<h2 id="friendName">osa</h2>
+<button class="close" onclick="closeFriend()">✕ Close</button>
+</div>
+<p id="friendDescription">osa has been my friend for over a year and he is really cool and one of the best friends ive ever had and i love him very much he means alot to me</p>
 </div>
 </div>
-<audio id="audio" src="./boyfriend%281%29.mp3" loop preload="auto"></audio>
-<div class="music-control"><button id="musicButton" onclick="toggleMusic()" aria-label="Play or pause music">▶</button></div>
-<div class="music-error" id="musicError">Couldn't load the song. Check that boyfriend(1).mp3 is uploaded beside index.html.</div>
+
 <script>
 function showTab(id,button){
  document.querySelectorAll('.content').forEach(el=>el.classList.remove('active'));
@@ -195,64 +192,71 @@ function showTab(id,button){
  document.querySelectorAll('nav button').forEach(el=>el.classList.remove('active'));
  button.classList.add('active');
 }
+
 function openFriend(name,description){
  document.getElementById('friendName').textContent=name;
  document.getElementById('friendDescription').textContent=description;
  document.getElementById('modal').classList.add('open');
 }
+
 function closeFriend(){document.getElementById('modal').classList.remove('open')}
 function backgroundClose(e){if(e.target.id==='modal')closeFriend()}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFriend()});
+
 async function copyDiscord(){
  const status=document.getElementById('discordStatus');
  try{await navigator.clipboard.writeText('azhhhhhh');status.textContent='Copied!'}
  catch(e){status.textContent='azhhhhhh'}
  setTimeout(()=>{status.textContent='azhhhhhh'},2000);
 }
-const audio=document.getElementById('audio');
-const musicButton=document.getElementById('musicButton');
-const musicError=document.getElementById('musicError');
-audio.volume=.4;
-function updateMusicButton(){musicButton.textContent=audio.paused?'▶':'♫'}
-async function toggleMusic(){
- musicError.style.display='none';
- if(audio.paused){
-  try{await audio.play();updateMusicButton()}
-  catch(error){musicError.style.display='block';updateMusicButton()}
- }else{audio.pause();updateMusicButton()}
-}
-audio.addEventListener('play',updateMusicButton);
-audio.addEventListener('pause',updateMusicButton);
-audio.addEventListener('error',()=>{musicError.style.display='block';updateMusicButton()});
+
+/* PARTICLES */
 const canvas=document.getElementById('particles');
 const ctx=canvas.getContext('2d');
 let w,h,particles=[];
 let mouse={x:-1000,y:-1000};
+
 function resize(){
- w=canvas.width=innerWidth;h=canvas.height=innerHeight;particles=[];
+ w=canvas.width=innerWidth;
+ h=canvas.height=innerHeight;
+ particles=[];
  for(let i=0;i<125;i++){
-  particles.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.65,vy:(Math.random()-.5)*.65,r:Math.random()*1.7+.5});
+  particles.push({
+   x:Math.random()*w,y:Math.random()*h,
+   vx:(Math.random()-.5)*.65,vy:(Math.random()-.5)*.65,
+   r:Math.random()*1.7+.5
+  });
  }
 }
+
 window.addEventListener('resize',resize);
 window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
 window.addEventListener('mouseout',e=>{if(!e.relatedTarget){mouse.x=-1000;mouse.y=-1000}});
+
 function animate(){
  ctx.clearRect(0,0,w,h);
  particles.forEach(p=>{
   let dx=mouse.x-p.x,dy=mouse.y-p.y,d=Math.hypot(dx,dy);
-  if(d<150&&d>0){let force=(150-d)/150;p.vx-=dx/d*force*.1;p.vy-=dy/d*force*.1}
-  p.x+=p.vx;p.y+=p.vy;p.vx*=.995;p.vy*=.995;
-  if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;
+  if(d<150&&d>0){
+   let force=(150-d)/150;
+   p.vx-=dx/d*force*.1;
+   p.vy-=dy/d*force*.1;
+  }
+  p.x+=p.vx;p.y+=p.vy;
+  p.vx*=.995;p.vy*=.995;
+  if(p.x<0||p.x>w)p.vx*=-1;
+  if(p.y<0||p.y>h)p.vy*=-1;
   ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-  ctx.fillStyle='rgba(255,140,50,.8)';ctx.shadowBlur=12;ctx.shadowColor='#ff8c32';ctx.fill();ctx.shadowBlur=0;
+  ctx.fillStyle='rgba(255,140,50,.8)';
+  ctx.shadowBlur=12;ctx.shadowColor='#ff8c32';ctx.fill();ctx.shadowBlur=0;
  });
  particles.forEach((p,i)=>{
   particles.slice(i+1).forEach(q=>{
    let d=Math.hypot(p.x-q.x,p.y-q.y);
    if(d<125){
     ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);
-    ctx.strokeStyle=`rgba(255,140,50,${(1-d/125)*.25})`;ctx.stroke();
+    ctx.strokeStyle=`rgba(255,140,50,${(1-d/125)*.25})`;
+    ctx.stroke();
    }
   });
  });
