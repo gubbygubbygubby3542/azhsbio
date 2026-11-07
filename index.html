@@ -6,256 +6,313 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>azh</title>
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Space+Mono&display=swap" rel="stylesheet">
 
-body{
- background:#050505;
- color:#eee;
- font-family:Arial,sans-serif;
+<style>
+* {
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
+}
+
+body {
+ background:#08070b;
+ color:#d8d0e5;
+ font-family:'Space Mono',monospace;
  min-height:100vh;
+ padding:40px 15px;
  overflow-x:hidden;
 }
 
-/* PARTICLE BACKGROUND */
-#particles{
+#particles {
  position:fixed;
  inset:0;
  width:100%;
  height:100%;
- z-index:0;
  pointer-events:none;
+ z-index:0;
 }
 
-/* KEEP WEBSITE ABOVE BACKGROUND */
-header,main,footer{
+.container {
  position:relative;
  z-index:1;
+ max-width:650px;
+ margin:auto;
 }
 
-header{
- height:65px;
- display:flex;
- align-items:center;
- justify-content:space-between;
- padding:0 7%;
- margin:12px 3%;
- width:94%;
- background:rgba(20,20,20,.55);
- backdrop-filter:blur(25px);
- -webkit-backdrop-filter:blur(25px);
- border:1px solid #ffffff20;
- border-radius:18px;
- box-shadow:0 8px 35px #0008;
+.glass {
+ background:rgba(16,13,21,.78);
+ backdrop-filter:blur(18px);
+ -webkit-backdrop-filter:blur(18px);
+ border:1px solid rgba(183,137,255,.25);
+ border-radius:5px;
+ box-shadow:0 0 25px #0005;
 }
 
-.logo{
- font-size:20px;
- font-weight:bold;
- letter-spacing:2px;
- color:#ff8c32;
+/* PROFILE */
+
+.profile {
+ text-align:center;
+ padding:28px 20px 22px;
 }
 
-nav{display:flex;gap:24px}
-
-nav button{
- background:none;
- border:0;
- color:#888;
- cursor:pointer;
- font-size:13px;
- transition:.25s;
-}
-
-nav button:hover,
-nav button.active{
- color:#ff963b;
- text-shadow:0 0 12px #ff8c32;
-}
-
-main{
- max-width:850px;
- margin:85px auto;
- padding:20px;
-}
-
-.profile{text-align:center}
-
-.avatar{
- width:110px;
- height:110px;
- border-radius:50%;
- border:2px solid #ff8c32;
- padding:4px;
+.avatar {
+ width:120px;
+ height:120px;
  object-fit:cover;
- box-shadow:0 0 35px #ff751855;
+ border-radius:50%;
+ border:2px solid #bd91ff;
+ box-shadow:0 0 20px #bd91ff55;
+ margin-bottom:15px;
 }
 
-h1{
- font-size:30px;
- margin:18px 0 8px;
+h1 {
+ font-family:'VT323',monospace;
+ font-size:38px;
+ color:#e2d3ff;
+ letter-spacing:3px;
+ margin-bottom:8px;
 }
 
-.username{
- color:#ff9b45;
- font-size:14px;
-}
-
-.bio{
- color:#999;
- margin:18px auto;
- max-width:400px;
- font-size:14px;
- line-height:1.7;
-}
-
-.status{
- display:inline-block;
- padding:9px 16px;
- border:1px solid #ffffff25;
- border-radius:30px;
- background:#ffffff09;
- backdrop-filter:blur(15px);
- color:#aaa;
+.username {
+ color:#9889aa;
  font-size:12px;
 }
 
-.dot{
- display:inline-block;
- width:7px;
- height:7px;
- background:#9cdb8b;
- border-radius:50%;
- margin-right:7px;
+.heart {
+ margin-top:17px;
+ border:1px solid #ff4d87;
+ color:#ff4d87;
+ background:transparent;
+ padding:7px 17px;
+ border-radius:30px;
+ cursor:pointer;
+ font-family:inherit;
+ transition:.2s;
 }
 
-.socials{
+.heart:hover {
+ background:#ff4d8722;
+ box-shadow:0 0 15px #ff4d8755;
+}
+
+/* NAVIGATION */
+
+nav {
  display:flex;
  justify-content:center;
- gap:12px;
- margin:25px;
+ flex-wrap:wrap;
+ gap:8px;
+ padding:13px 8px;
+ border-top:1px solid #30213e;
+ border-bottom:1px solid #30213e;
 }
 
-.socials a{
- text-decoration:none;
- color:#ffad60;
- background:#ffffff08;
- border:1px solid #ffffff25;
- padding:11px 20px;
- border-radius:14px;
- backdrop-filter:blur(15px);
- transition:.3s;
- font-size:13px;
-}
-
-.socials a:hover{
- background:#ff8c3222;
- border-color:#ff8c32;
- transform:translateY(-3px);
- box-shadow:0 0 20px #ff8c3233;
-}
-
-.panel{
- background:rgba(255,255,255,.045);
- backdrop-filter:blur(25px);
- -webkit-backdrop-filter:blur(25px);
- border:1px solid #ffffff18;
- border-radius:22px;
- padding:24px;
- margin-top:25px;
- box-shadow:inset 0 1px 1px #ffffff15;
- transition:.3s;
-}
-
-.panel:hover{
- border-color:#ff963b55;
- transform:translateY(-2px);
-}
-
-.panel h2{
- font-size:15px;
- margin-bottom:18px;
-}
-
-.panel p{
- color:#999;
- font-size:13px;
- line-height:1.8;
-}
-
-.friends{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:12px;
-}
-
-.friend{
- background:#ffffff08;
- border:1px solid #ffffff15;
- border-radius:15px;
- padding:18px;
- text-align:center;
- color:#bbb;
- font-size:13px;
- transition:.3s;
-}
-
-.friend span{
- display:block;
- color:#ff963b;
+nav button {
+ font-family:'VT323',monospace;
  font-size:23px;
- margin-bottom:9px;
+ color:#a99bbd;
+ background:transparent;
+ border:1px solid transparent;
+ padding:8px 14px;
+ cursor:pointer;
+ transition:.2s;
 }
 
-.friend:hover{
- transform:translateY(-4px);
- border-color:#ff963b88;
+nav button:hover {
+ color:#d4b5ff;
+ background:#a66cff22;
 }
 
-.link{
+nav button.active {
+ background:#b58aff;
+ color:#171020;
+ border:1px solid #d4b5ff;
+ box-shadow:0 3px 0 #7952ad;
+}
+
+/* CONTENT */
+
+.content {
+ display:none;
+ padding:32px 24px;
+ min-height:220px;
+}
+
+.content.active {
  display:block;
- padding:16px;
- margin:10px 0;
- background:#ffffff08;
- border:1px solid #ffffff15;
- border-radius:14px;
- text-decoration:none;
- color:#ddd;
- transition:.3s;
+ animation:fade .3s ease;
+}
+
+@keyframes fade {
+ from {
+  opacity:0;
+  transform:translateY(8px);
+ }
+ to {
+  opacity:1;
+  transform:translateY(0);
+ }
+}
+
+.heading {
+ font-family:'VT323',monospace;
+ color:#bd91ff;
+ font-size:25px;
+ margin-bottom:22px;
+}
+
+.heading:before {
+ content:'› ';
+ color:#a99bbd;
+}
+
+.about {
  font-size:14px;
+ line-height:2.3;
 }
 
-.link:hover{
- border-color:#ff8c32;
- color:#ffad60;
- transform:translateX(4px);
+.about p {
+ margin-bottom:8px;
 }
 
-.content{display:none}
-
-.content.active{
- display:block;
- animation:fade .35s ease;
+.info {
+ display:flex;
+ flex-wrap:wrap;
+ gap:8px;
+ margin-top:18px;
 }
 
-@keyframes fade{
- from{opacity:0;transform:translateY(10px)}
- to{opacity:1;transform:translateY(0)}
-}
-
-footer{
- text-align:center;
- color:#555;
+.info span {
+ border:1px solid #392b49;
+ padding:6px 10px;
+ color:#a99bbd;
  font-size:11px;
- padding:60px 0 25px;
 }
 
-@media(max-width:600px){
- header{padding:0 15px}
- nav{gap:12px}
- nav button{font-size:11px}
- main{margin:45px auto}
- .friends{grid-template-columns:repeat(2,1fr)}
+.info strong {
+ color:#ddd0ef;
+ font-weight:normal;
+}
+
+/* FRIENDS */
+
+.grid {
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:12px;
+}
+
+.friend {
+ padding:17px;
+ border:1px solid #392b49;
+ background:#ffffff05;
+ color:#d8d0e5;
+ font-size:13px;
+ transition:.2s;
+}
+
+.friend:hover {
+ border-color:#bd91ff;
+ background:#bd91ff12;
+ transform:translateY(-3px);
+}
+
+.friend small {
+ display:block;
+ color:#9989ae;
+ margin-top:6px;
+}
+
+/* LINKS */
+
+.item {
+ display:block;
+ padding:14px;
+ margin-bottom:10px;
+ border:1px solid #392b49;
+ background:#ffffff05;
+ text-decoration:none;
+ color:#cbb6e9;
+ font-size:13px;
+ transition:.2s;
+}
+
+.item:hover {
+ background:#bd91ff15;
+ border-color:#bd91ff;
+ padding-left:20px;
+}
+
+/* MUSIC PLAYER */
+
+.music {
+ margin-top:14px;
+ padding:15px;
+ display:flex;
+ align-items:center;
+ gap:12px;
+}
+
+.music button {
+ background:transparent;
+ color:#bd91ff;
+ border:1px solid #49355e;
+ border-radius:50%;
+ width:35px;
+ height:35px;
+ cursor:pointer;
+ font-size:13px;
+}
+
+.music button:hover {
+ background:#bd91ff22;
+}
+
+.track {
+ flex:1;
+ min-width:0;
+}
+
+.track-name {
+ font-size:12px;
+ overflow:hidden;
+ white-space:nowrap;
+ text-overflow:ellipsis;
+}
+
+.track-bar {
+ width:100%;
+ height:3px;
+ background:#392b49;
+ margin-top:10px;
+}
+
+.track-progress {
+ width:0%;
+ height:3px;
+ background:#bd91ff;
+}
+
+.volume {
+ width:65px;
+ accent-color:#bd91ff;
+}
+
+footer {
+ text-align:center;
+ color:#71677e;
+ font-family:'VT323',monospace;
+ font-size:15px;
+ padding:22px;
+}
+
+@media(max-width:500px) {
+ body {padding:20px 10px}
+ nav {gap:3px}
+ nav button {font-size:20px;padding:8px}
+ .content {padding:25px 17px}
+ .grid {grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -264,96 +321,224 @@ footer{
 
 <canvas id="particles"></canvas>
 
-<header>
- <div class="logo">azh.</div>
- <nav>
-  <button class="active" onclick="showTab('home',this)">Home</button>
-  <button onclick="showTab('friends',this)">Friends</button>
-  <button onclick="showTab('apps',this)">Apps</button>
-  <button onclick="showTab('links',this)">Links</button>
- </nav>
-</header>
+<div class="container">
 
-<main>
+<div class="glass">
+
+<!-- PROFILE -->
+
+<div class="profile">
+
+<img class="avatar"
+src="https://placehold.co/200x200/17121f/bd91ff?text=azh"
+alt="Profile picture">
+
+<h1>azh</h1>
+
+<div class="username">just a guy on the internet_</div>
+
+<button class="heart" id="heart" onclick="like()">
+♥ <span id="likes">1</span>
+</button>
+
+</div>
+
+<!-- NAVIGATION -->
+
+<nav>
+<button class="active" onclick="showTab('home',this)">Home</button>
+<button onclick="showTab('friends',this)">Friends</button>
+<button onclick="showTab('tools',this)">Tools</button>
+<button onclick="showTab('abyss',this)">Abyss</button>
+<button onclick="showTab('links',this)">Links</button>
+</nav>
+
+<!-- HOME -->
 
 <section id="home" class="content active">
- <div class="profile">
 
-  <img class="avatar"
-  src="https://placehold.co/200x200/171717/ff8c32?text=azh"
-  alt="Avatar">
+<div class="heading">about me</div>
 
-  <h1>azh</h1>
-  <div class="username">@azh</div>
+<div class="about">
+<p>i like apples</p>
+</div>
 
-  <p class="bio">
-   welcome to my little corner of the internet.
-   <br>nothing special, just me.
-  </p>
-
-  <div class="status">
-   <span class="dot"></span>Online
-  </div>
-
-  <div class="socials">
-   <a href="YOUR_DISCORD_LINK" target="_blank">Discord ↗</a>
-   <a href="YOUR_YOUTUBE_LINK" target="_blank">YouTube ↗</a>
-  </div>
-
- </div>
-
- <div class="panel">
-  <h2>About Me</h2>
-  <p>osa is super coolio.</p>
- </div>
 </section>
+
+<!-- FRIENDS -->
 
 <section id="friends" class="content">
- <div class="panel">
-  <h2>Friends</h2>
-  <div class="friends">
-   <div class="friend"><span>✦</span>Friend 1</div>
-   <div class="friend"><span>✧</span>Friend 2</div>
-   <div class="friend"><span>✦</span>Friend 3</div>
-  </div>
- </div>
+
+<div class="heading">friends</div>
+
+<div class="grid">
+
+<div class="friend">
+✦ Friend 1
+<small>online</small>
+</div>
+
+<div class="friend">
+✧ Friend 2
+<small>online</small>
+</div>
+
+<div class="friend">
+✦ Friend 3
+<small>offline</small>
+</div>
+
+<div class="friend">
+✧ Friend 4
+<small>offline</small>
+</div>
+
+</div>
+
 </section>
 
-<section id="apps" class="content">
- <div class="panel">
-  <h2>My Apps</h2>
-  <a class="link" href="https://discord.com">Discord ↗</a>
-  <a class="link" href="https://spotify.com">Spotify ↗</a>
-  <a class="link" href="https://youtube.com">YouTube ↗</a>
- </div>
+<!-- TOOLS -->
+
+<section id="tools" class="content">
+
+<div class="heading">tools</div>
+
+<a class="item" href="https://discord.com">Discord ↗</a>
+<a class="item" href="https://spotify.com">Spotify ↗</a>
+<a class="item" href="https://youtube.com">YouTube ↗</a>
+
 </section>
+
+<!-- ABYSS -->
+
+<section id="abyss" class="content">
+
+<div class="heading">the abyss</div>
+
+<p style="font-size:13px;color:#9989ae;line-height:2">
+you found your way into the abyss...
+</p>
+
+</section>
+
+<!-- LINKS -->
 
 <section id="links" class="content">
- <div class="panel">
-  <h2>My Links</h2>
-  <a class="link" href="YOUR_DISCORD_LINK">Discord ↗</a>
-  <a class="link" href="YOUR_YOUTUBE_LINK">YouTube ↗</a>
- </div>
+
+<div class="heading">links</div>
+
+<a class="item" href="YOUR_DISCORD_LINK">Discord ↗</a>
+<a class="item" href="YOUR_YOUTUBE_LINK">YouTube ↗</a>
+
 </section>
 
-</main>
+</div>
 
-<footer>© 2026 azh · made with care</footer>
+<!-- MUSIC PLAYER -->
+
+<div class="glass music">
+
+<button onclick="skipBack()">|◀</button>
+
+<button id="play" onclick="toggleMusic()">▶</button>
+
+<button onclick="skipForward()">▶|</button>
+
+<div class="track">
+<div class="track-name" id="trackName">add your music file</div>
+<div class="track-bar">
+<div class="track-progress" id="progress"></div>
+</div>
+</div>
+
+<input class="volume" type="range" min="0" max="1" step=".01" value=".5" id="volume">
+
+</div>
+
+<footer>
+© 2026 azh · made with too much free time
+</footer>
+
+</div>
+
+<audio id="audio"></audio>
 
 <script>
-function showTab(id,button){
+
+/* TAB SYSTEM */
+
+function showTab(id,button) {
  document.querySelectorAll('.content').forEach(el=>{
   el.classList.remove('active');
  });
+
  document.getElementById(id).classList.add('active');
 
  document.querySelectorAll('nav button').forEach(el=>{
   el.classList.remove('active');
  });
+
  button.classList.add('active');
 }
 
-/* INTERACTIVE ORANGE PARTICLES */
+/* LIKE BUTTON */
+
+let likes=1;
+let liked=false;
+
+function like(){
+ liked=!liked;
+ likes+=liked?1:-1;
+ document.getElementById('likes').textContent=likes;
+ document.getElementById('heart').style.background=
+ liked?'#ff4d8722':'transparent';
+}
+
+/* MUSIC PLAYER */
+
+const audio=document.getElementById('audio');
+const play=document.getElementById('play');
+
+document.getElementById('volume').addEventListener('input',e=>{
+ audio.volume=e.target.value;
+});
+
+function toggleMusic(){
+ if(!audio.src){
+  alert('Add your music file to the audio element first!');
+  return;
+ }
+
+ if(audio.paused){
+  audio.play();
+  play.textContent='Ⅱ';
+ }else{
+  audio.pause();
+  play.textContent='▶';
+ }
+}
+
+function skipBack(){
+ audio.currentTime=0;
+}
+
+function skipForward(){
+ if(audio.duration) audio.currentTime=Math.min(audio.currentTime+10,audio.duration);
+}
+
+audio.addEventListener('ended',()=>{
+ play.textContent='▶';
+});
+
+audio.addEventListener('timeupdate',()=>{
+ if(audio.duration){
+  document.getElementById('progress').style.width=
+  (audio.currentTime/audio.duration*100)+'%';
+ }
+});
+
+/* ORANGE PARTICLE BACKGROUND */
+
 const canvas=document.getElementById('particles');
 const ctx=canvas.getContext('2d');
 
@@ -365,13 +550,13 @@ function resize(){
  h=canvas.height=innerHeight;
  particles=[];
 
- for(let i=0;i<90;i++){
+ for(let i=0;i<85;i++){
   particles.push({
    x:Math.random()*w,
    y:Math.random()*h,
-   vx:(Math.random()-.5)*.5,
-   vy:(Math.random()-.5)*.5,
-   r:Math.random()*2+1
+   vx:(Math.random()-.5)*.4,
+   vy:(Math.random()-.5)*.4,
+   r:Math.random()*1.7+.5
   });
  }
 }
@@ -391,30 +576,33 @@ window.addEventListener('mouseout',e=>{
 });
 
 function animate(){
+
  ctx.clearRect(0,0,w,h);
 
  particles.forEach(p=>{
+
   let dx=mouse.x-p.x;
   let dy=mouse.y-p.y;
   let d=Math.hypot(dx,dy);
 
-  if(d<150 && d>0){
+  if(d<150&&d>0){
    let force=(150-d)/150;
-   p.vx-=dx/d*force*.12;
-   p.vy-=dy/d*force*.12;
+   p.vx-=dx/d*force*.10;
+   p.vy-=dy/d*force*.10;
   }
 
   p.x+=p.vx;
   p.y+=p.vy;
-  p.vx*=.99;
-  p.vy*=.99;
+
+  p.vx*=.995;
+  p.vy*=.995;
 
   if(p.x<0||p.x>w)p.vx*=-1;
   if(p.y<0||p.y>h)p.vy*=-1;
 
   ctx.beginPath();
   ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-  ctx.fillStyle='rgba(255,145,55,.8)';
+  ctx.fillStyle='rgba(255,140,50,.8)';
   ctx.shadowBlur=12;
   ctx.shadowColor='#ff8c32';
   ctx.fill();
@@ -425,11 +613,11 @@ function animate(){
   particles.slice(i+1).forEach(q=>{
    let d=Math.hypot(p.x-q.x,p.y-q.y);
 
-   if(d<110){
+   if(d<105){
     ctx.beginPath();
     ctx.moveTo(p.x,p.y);
     ctx.lineTo(q.x,q.y);
-    ctx.strokeStyle=`rgba(255,140,50,${(1-d/110)*.25})`;
+    ctx.strokeStyle=`rgba(255,140,50,${(1-d/105)*.2})`;
     ctx.stroke();
    }
   });
@@ -440,6 +628,7 @@ function animate(){
 
 resize();
 animate();
+
 </script>
 
 </body>
