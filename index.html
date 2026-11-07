@@ -1,20 +1,361 @@
 
-<canvas id="particles"></canvas>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>azh</title>
 
 <style>
-#particles {
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+ background:#050505;
+ color:#eee;
+ font-family:Arial,sans-serif;
+ min-height:100vh;
+ overflow-x:hidden;
+}
+
+/* PARTICLE BACKGROUND */
+#particles{
  position:fixed;
  inset:0;
  width:100%;
  height:100%;
- z-index:-1;
+ z-index:0;
  pointer-events:none;
 }
+
+/* KEEP WEBSITE ABOVE BACKGROUND */
+header,main,footer{
+ position:relative;
+ z-index:1;
+}
+
+header{
+ height:65px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 7%;
+ margin:12px 3%;
+ width:94%;
+ background:rgba(20,20,20,.55);
+ backdrop-filter:blur(25px);
+ -webkit-backdrop-filter:blur(25px);
+ border:1px solid #ffffff20;
+ border-radius:18px;
+ box-shadow:0 8px 35px #0008;
+}
+
+.logo{
+ font-size:20px;
+ font-weight:bold;
+ letter-spacing:2px;
+ color:#ff8c32;
+}
+
+nav{display:flex;gap:24px}
+
+nav button{
+ background:none;
+ border:0;
+ color:#888;
+ cursor:pointer;
+ font-size:13px;
+ transition:.25s;
+}
+
+nav button:hover,
+nav button.active{
+ color:#ff963b;
+ text-shadow:0 0 12px #ff8c32;
+}
+
+main{
+ max-width:850px;
+ margin:85px auto;
+ padding:20px;
+}
+
+.profile{text-align:center}
+
+.avatar{
+ width:110px;
+ height:110px;
+ border-radius:50%;
+ border:2px solid #ff8c32;
+ padding:4px;
+ object-fit:cover;
+ box-shadow:0 0 35px #ff751855;
+}
+
+h1{
+ font-size:30px;
+ margin:18px 0 8px;
+}
+
+.username{
+ color:#ff9b45;
+ font-size:14px;
+}
+
+.bio{
+ color:#999;
+ margin:18px auto;
+ max-width:400px;
+ font-size:14px;
+ line-height:1.7;
+}
+
+.status{
+ display:inline-block;
+ padding:9px 16px;
+ border:1px solid #ffffff25;
+ border-radius:30px;
+ background:#ffffff09;
+ backdrop-filter:blur(15px);
+ color:#aaa;
+ font-size:12px;
+}
+
+.dot{
+ display:inline-block;
+ width:7px;
+ height:7px;
+ background:#9cdb8b;
+ border-radius:50%;
+ margin-right:7px;
+}
+
+.socials{
+ display:flex;
+ justify-content:center;
+ gap:12px;
+ margin:25px;
+}
+
+.socials a{
+ text-decoration:none;
+ color:#ffad60;
+ background:#ffffff08;
+ border:1px solid #ffffff25;
+ padding:11px 20px;
+ border-radius:14px;
+ backdrop-filter:blur(15px);
+ transition:.3s;
+ font-size:13px;
+}
+
+.socials a:hover{
+ background:#ff8c3222;
+ border-color:#ff8c32;
+ transform:translateY(-3px);
+ box-shadow:0 0 20px #ff8c3233;
+}
+
+.panel{
+ background:rgba(255,255,255,.045);
+ backdrop-filter:blur(25px);
+ -webkit-backdrop-filter:blur(25px);
+ border:1px solid #ffffff18;
+ border-radius:22px;
+ padding:24px;
+ margin-top:25px;
+ box-shadow:inset 0 1px 1px #ffffff15;
+ transition:.3s;
+}
+
+.panel:hover{
+ border-color:#ff963b55;
+ transform:translateY(-2px);
+}
+
+.panel h2{
+ font-size:15px;
+ margin-bottom:18px;
+}
+
+.panel p{
+ color:#999;
+ font-size:13px;
+ line-height:1.8;
+}
+
+.friends{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:12px;
+}
+
+.friend{
+ background:#ffffff08;
+ border:1px solid #ffffff15;
+ border-radius:15px;
+ padding:18px;
+ text-align:center;
+ color:#bbb;
+ font-size:13px;
+ transition:.3s;
+}
+
+.friend span{
+ display:block;
+ color:#ff963b;
+ font-size:23px;
+ margin-bottom:9px;
+}
+
+.friend:hover{
+ transform:translateY(-4px);
+ border-color:#ff963b88;
+}
+
+.link{
+ display:block;
+ padding:16px;
+ margin:10px 0;
+ background:#ffffff08;
+ border:1px solid #ffffff15;
+ border-radius:14px;
+ text-decoration:none;
+ color:#ddd;
+ transition:.3s;
+ font-size:14px;
+}
+
+.link:hover{
+ border-color:#ff8c32;
+ color:#ffad60;
+ transform:translateX(4px);
+}
+
+.content{display:none}
+
+.content.active{
+ display:block;
+ animation:fade .35s ease;
+}
+
+@keyframes fade{
+ from{opacity:0;transform:translateY(10px)}
+ to{opacity:1;transform:translateY(0)}
+}
+
+footer{
+ text-align:center;
+ color:#555;
+ font-size:11px;
+ padding:60px 0 25px;
+}
+
+@media(max-width:600px){
+ header{padding:0 15px}
+ nav{gap:12px}
+ nav button{font-size:11px}
+ main{margin:45px auto}
+ .friends{grid-template-columns:repeat(2,1fr)}
+}
 </style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<header>
+ <div class="logo">azh.</div>
+ <nav>
+  <button class="active" onclick="showTab('home',this)">Home</button>
+  <button onclick="showTab('friends',this)">Friends</button>
+  <button onclick="showTab('apps',this)">Apps</button>
+  <button onclick="showTab('links',this)">Links</button>
+ </nav>
+</header>
+
+<main>
+
+<section id="home" class="content active">
+ <div class="profile">
+
+  <img class="avatar"
+  src="https://placehold.co/200x200/171717/ff8c32?text=azh"
+  alt="Avatar">
+
+  <h1>azh</h1>
+  <div class="username">@azh</div>
+
+  <p class="bio">
+   welcome to my little corner of the internet.
+   <br>nothing special, just me.
+  </p>
+
+  <div class="status">
+   <span class="dot"></span>Online
+  </div>
+
+  <div class="socials">
+   <a href="YOUR_DISCORD_LINK" target="_blank">Discord ↗</a>
+   <a href="YOUR_YOUTUBE_LINK" target="_blank">YouTube ↗</a>
+  </div>
+
+ </div>
+
+ <div class="panel">
+  <h2>About Me</h2>
+  <p>osa is super coolio.</p>
+ </div>
+</section>
+
+<section id="friends" class="content">
+ <div class="panel">
+  <h2>Friends</h2>
+  <div class="friends">
+   <div class="friend"><span>✦</span>Friend 1</div>
+   <div class="friend"><span>✧</span>Friend 2</div>
+   <div class="friend"><span>✦</span>Friend 3</div>
+  </div>
+ </div>
+</section>
+
+<section id="apps" class="content">
+ <div class="panel">
+  <h2>My Apps</h2>
+  <a class="link" href="https://discord.com">Discord ↗</a>
+  <a class="link" href="https://spotify.com">Spotify ↗</a>
+  <a class="link" href="https://youtube.com">YouTube ↗</a>
+ </div>
+</section>
+
+<section id="links" class="content">
+ <div class="panel">
+  <h2>My Links</h2>
+  <a class="link" href="YOUR_DISCORD_LINK">Discord ↗</a>
+  <a class="link" href="YOUR_YOUTUBE_LINK">YouTube ↗</a>
+ </div>
+</section>
+
+</main>
+
+<footer>© 2026 azh · made with care</footer>
 
 <script>
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
+function showTab(id,button){
+ document.querySelectorAll('.content').forEach(el=>{
+  el.classList.remove('active');
+ });
+ document.getElementById(id).classList.add('active');
+
+ document.querySelectorAll('nav button').forEach(el=>{
+  el.classList.remove('active');
+ });
+ button.classList.add('active');
+}
+
+/* INTERACTIVE ORANGE PARTICLES */
+const canvas=document.getElementById('particles');
+const ctx=canvas.getContext('2d');
 
 let w,h,particles=[];
 let mouse={x:-1000,y:-1000};
@@ -24,7 +365,7 @@ function resize(){
  h=canvas.height=innerHeight;
  particles=[];
 
- for(let i=0;i<85;i++){
+ for(let i=0;i<90;i++){
   particles.push({
    x:Math.random()*w,
    y:Math.random()*h,
@@ -35,14 +376,14 @@ function resize(){
  }
 }
 
-window.addEventListener("resize",resize);
+window.addEventListener('resize',resize);
 
-window.addEventListener("mousemove",e=>{
+window.addEventListener('mousemove',e=>{
  mouse.x=e.clientX;
  mouse.y=e.clientY;
 });
 
-window.addEventListener("mouseout",e=>{
+window.addEventListener('mouseout',e=>{
  if(!e.relatedTarget){
   mouse.x=-1000;
   mouse.y=-1000;
@@ -55,17 +396,16 @@ function animate(){
  particles.forEach(p=>{
   let dx=mouse.x-p.x;
   let dy=mouse.y-p.y;
-  let dist=Math.sqrt(dx*dx+dy*dy);
+  let d=Math.hypot(dx,dy);
 
-  if(dist<150 && dist>0){
-   let force=(150-dist)/150;
-   p.vx-=dx/dist*force*.12;
-   p.vy-=dy/dist*force*.12;
+  if(d<150 && d>0){
+   let force=(150-d)/150;
+   p.vx-=dx/d*force*.12;
+   p.vy-=dy/d*force*.12;
   }
 
   p.x+=p.vx;
   p.y+=p.vy;
-
   p.vx*=.99;
   p.vy*=.99;
 
@@ -74,18 +414,16 @@ function animate(){
 
   ctx.beginPath();
   ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-  ctx.fillStyle="rgba(255,145,55,.8)";
+  ctx.fillStyle='rgba(255,145,55,.8)';
   ctx.shadowBlur=12;
-  ctx.shadowColor="#ff8c32";
+  ctx.shadowColor='#ff8c32';
   ctx.fill();
   ctx.shadowBlur=0;
  });
 
  particles.forEach((p,i)=>{
   particles.slice(i+1).forEach(q=>{
-   let dx=p.x-q.x;
-   let dy=p.y-q.y;
-   let d=Math.sqrt(dx*dx+dy*dy);
+   let d=Math.hypot(p.x-q.x,p.y-q.y);
 
    if(d<110){
     ctx.beginPath();
@@ -103,3 +441,6 @@ function animate(){
 resize();
 animate();
 </script>
+
+</body>
+</html>
