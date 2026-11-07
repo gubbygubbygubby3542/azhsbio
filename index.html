@@ -3,28 +3,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>azh</title>
 
-<link href="https://fonts.googleapis.com/css2?family=VT323&family=Space+Mono&display=swap" rel="stylesheet">
-
 <style>
-* {
- margin:0;
- padding:0;
- box-sizing:border-box;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
-body {
- background:#08070b;
- color:#d8d0e5;
- font-family:'Space Mono',monospace;
+body{
+ background:#050505;
+ color:#eee;
+ font-family:Arial,sans-serif;
  min-height:100vh;
- padding:40px 15px;
+ padding:35px 15px;
  overflow-x:hidden;
 }
 
-#particles {
+#particles{
  position:fixed;
  inset:0;
  width:100%;
@@ -33,286 +27,283 @@ body {
  z-index:0;
 }
 
-.container {
+.container{
  position:relative;
  z-index:1;
  max-width:650px;
  margin:auto;
 }
 
-.glass {
- background:rgba(16,13,21,.78);
- backdrop-filter:blur(18px);
- -webkit-backdrop-filter:blur(18px);
- border:1px solid rgba(183,137,255,.25);
- border-radius:5px;
- box-shadow:0 0 25px #0005;
+.glass{
+ background:rgba(18,16,15,.78);
+ backdrop-filter:blur(20px);
+ -webkit-backdrop-filter:blur(20px);
+ border:1px solid #ffffff20;
+ border-radius:12px;
+ box-shadow:0 10px 35px #0008;
 }
 
-/* PROFILE */
-
-.profile {
+.profile{
  text-align:center;
- padding:28px 20px 22px;
+ padding:30px 20px;
 }
 
-.avatar {
- width:120px;
- height:120px;
- object-fit:cover;
+.avatar{
+ width:115px;
+ height:115px;
  border-radius:50%;
- border:2px solid #bd91ff;
- box-shadow:0 0 20px #bd91ff55;
- margin-bottom:15px;
+ object-fit:cover;
+ border:2px solid #ff8c32;
+ box-shadow:0 0 25px #ff8c3244;
 }
 
-h1 {
- font-family:'VT323',monospace;
- font-size:38px;
- color:#e2d3ff;
- letter-spacing:3px;
- margin-bottom:8px;
+h1{
+ font-size:30px;
+ margin:15px 0 8px;
 }
 
-.username {
- color:#9889aa;
- font-size:12px;
+.username{
+ color:#ff9b45;
+ font-size:13px;
 }
 
-.heart {
- margin-top:17px;
- border:1px solid #ff4d87;
- color:#ff4d87;
- background:transparent;
- padding:7px 17px;
- border-radius:30px;
- cursor:pointer;
- font-family:inherit;
- transition:.2s;
+.bio{
+ color:#aaa;
+ font-size:14px;
+ margin-top:18px;
 }
 
-.heart:hover {
- background:#ff4d8722;
- box-shadow:0 0 15px #ff4d8755;
-}
-
-/* NAVIGATION */
-
-nav {
+nav{
  display:flex;
  justify-content:center;
  flex-wrap:wrap;
  gap:8px;
- padding:13px 8px;
- border-top:1px solid #30213e;
- border-bottom:1px solid #30213e;
+ padding:14px 8px;
+ border-top:1px solid #49301e;
+ border-bottom:1px solid #49301e;
 }
 
-nav button {
- font-family:'VT323',monospace;
- font-size:23px;
- color:#a99bbd;
+nav button{
+ font-family:Arial,sans-serif;
+ font-size:13px;
+ color:#ffad60;
  background:transparent;
  border:1px solid transparent;
- padding:8px 14px;
+ border-radius:2px;
+ padding:10px 16px;
  cursor:pointer;
  transition:.2s;
 }
 
-nav button:hover {
- color:#d4b5ff;
- background:#a66cff22;
+nav button:hover{
+ background:#ff8c3220;
+ color:white;
 }
 
-nav button.active {
- background:#b58aff;
- color:#171020;
- border:1px solid #d4b5ff;
- box-shadow:0 3px 0 #7952ad;
+nav button.active{
+ background:#ff963b;
+ color:#160d06;
+ border:1px solid #ffb46f;
+ box-shadow:0 3px 0 #a94f12;
 }
 
-/* CONTENT */
-
-.content {
+.content{
  display:none;
- padding:32px 24px;
+ padding:25px;
  min-height:220px;
 }
 
-.content.active {
+.content.active{
  display:block;
  animation:fade .3s ease;
 }
 
-@keyframes fade {
- from {
-  opacity:0;
-  transform:translateY(8px);
- }
- to {
-  opacity:1;
-  transform:translateY(0);
- }
+@keyframes fade{
+ from{opacity:0;transform:translateY(8px)}
+ to{opacity:1;transform:translateY(0)}
 }
 
-.heading {
- font-family:'VT323',monospace;
- color:#bd91ff;
- font-size:25px;
+.heading{
+ font-size:17px;
+ color:#ff963b;
  margin-bottom:22px;
 }
 
-.heading:before {
- content:'› ';
- color:#a99bbd;
+.heading:before{
+ content:"› ";
+ color:#ffad60;
 }
 
-.about {
- font-size:14px;
- line-height:2.3;
-}
-
-.about p {
- margin-bottom:8px;
-}
-
-.info {
+.friend{
  display:flex;
- flex-wrap:wrap;
- gap:8px;
- margin-top:18px;
+ align-items:center;
+ gap:13px;
+ padding:13px;
+ background:#ffffff08;
+ border:1px solid #ffffff18;
+ border-radius:9px;
+ margin-bottom:10px;
 }
 
-.info span {
- border:1px solid #392b49;
- padding:6px 10px;
- color:#a99bbd;
- font-size:11px;
+.friend img{
+ width:43px;
+ height:43px;
+ border-radius:50%;
+ object-fit:cover;
 }
 
-.info strong {
- color:#ddd0ef;
- font-weight:normal;
+.friend-info{
+ flex:1;
+ font-size:14px;
 }
 
-/* FRIENDS */
-
-.grid {
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:12px;
-}
-
-.friend {
- padding:17px;
- border:1px solid #392b49;
- background:#ffffff05;
- color:#d8d0e5;
- font-size:13px;
- transition:.2s;
-}
-
-.friend:hover {
- border-color:#bd91ff;
- background:#bd91ff12;
- transform:translateY(-3px);
-}
-
-.friend small {
+.friend-info small{
  display:block;
- color:#9989ae;
- margin-top:6px;
+ color:#888;
+ margin-top:5px;
 }
 
-/* LINKS */
+.friend button{
+ background:#ff963b;
+ border:1px solid #ffb46f;
+ color:#170d05;
+ padding:8px 13px;
+ cursor:pointer;
+ border-radius:3px;
+ font-size:12px;
+}
 
-.item {
+.friend button:hover{
+ background:#ffad60;
+}
+
+.item{
  display:block;
  padding:14px;
  margin-bottom:10px;
- border:1px solid #392b49;
- background:#ffffff05;
+ border:1px solid #ffffff18;
+ background:#ffffff08;
  text-decoration:none;
- color:#cbb6e9;
+ color:#ffad60;
+ border-radius:7px;
  font-size:13px;
  transition:.2s;
 }
 
-.item:hover {
- background:#bd91ff15;
- border-color:#bd91ff;
- padding-left:20px;
+.item:hover{
+ border-color:#ff963b;
+ background:#ff963b15;
 }
 
-/* MUSIC PLAYER */
+/* FRIEND POPUP */
 
-.music {
- margin-top:14px;
- padding:15px;
+.modal-bg{
+ position:fixed;
+ inset:0;
+ z-index:10;
+ background:#000b;
+ backdrop-filter:blur(7px);
+ display:none;
+ align-items:center;
+ justify-content:center;
+ padding:20px;
+}
+
+.modal-bg.open{
+ display:flex;
+}
+
+.modal{
+ width:100%;
+ max-width:350px;
+ padding:25px;
+ background:rgba(20,18,16,.96);
+ border:1px solid #ff963b66;
+ border-radius:12px;
+ box-shadow:0 0 35px #ff963b22;
+ animation:fade .2s ease;
+}
+
+.modal-top{
  display:flex;
  align-items:center;
- gap:12px;
+ justify-content:space-between;
+ margin-bottom:20px;
 }
 
-.music button {
+.modal h2{
+ font-size:19px;
+ color:#ffad60;
+}
+
+.close{
  background:transparent;
- color:#bd91ff;
- border:1px solid #49355e;
- border-radius:50%;
- width:35px;
- height:35px;
+ border:1px solid #ffffff25;
+ color:#aaa;
+ padding:6px 10px;
  cursor:pointer;
+ border-radius:4px;
+}
+
+.close:hover{
+ color:white;
+ border-color:#ff963b;
+}
+
+.modal p{
+ color:#aaa;
  font-size:13px;
+ line-height:1.8;
 }
 
-.music button:hover {
- background:#bd91ff22;
-}
-
-.track {
- flex:1;
- min-width:0;
-}
-
-.track-name {
- font-size:12px;
- overflow:hidden;
- white-space:nowrap;
- text-overflow:ellipsis;
-}
-
-.track-bar {
- width:100%;
- height:3px;
- background:#392b49;
- margin-top:10px;
-}
-
-.track-progress {
- width:0%;
- height:3px;
- background:#bd91ff;
-}
-
-.volume {
- width:65px;
- accent-color:#bd91ff;
-}
-
-footer {
+footer{
  text-align:center;
- color:#71677e;
- font-family:'VT323',monospace;
- font-size:15px;
- padding:22px;
+ color:#666;
+ font-size:11px;
+ padding:25px;
 }
 
-@media(max-width:500px) {
- body {padding:20px 10px}
- nav {gap:3px}
- nav button {font-size:20px;padding:8px}
- .content {padding:25px 17px}
- .grid {grid-template-columns:1fr}
+/* MUSIC CONTROLLER */
+
+.music-control{
+ position:fixed;
+ z-index:5;
+ bottom:20px;
+ right:20px;
+ display:flex;
+ align-items:center;
+ gap:10px;
+ padding:12px 15px;
+ background:rgba(20,18,16,.9);
+ border:1px solid #ff963b66;
+ border-radius:12px;
+ backdrop-filter:blur(20px);
+ box-shadow:0 5px 25px #0008;
+}
+
+.music-control button{
+ background:none;
+ border:none;
+ color:#ffad60;
+ font-size:17px;
+ cursor:pointer;
+}
+
+.music-control input{
+ width:85px;
+ accent-color:#ff963b;
+ cursor:pointer;
+}
+
+.music-label{
+ color:#aaa;
+ font-size:11px;
+}
+
+@media(max-width:500px){
+ nav{gap:3px}
+ nav button{padding:9px 10px}
+ .music-control{bottom:12px;right:12px}
 }
 </style>
 </head>
@@ -327,217 +318,176 @@ footer {
 
 <!-- PROFILE -->
 
-<div class="profile">
-
+<section class="profile">
 <img class="avatar"
-src="https://placehold.co/200x200/17121f/bd91ff?text=azh"
-alt="Profile picture">
+src="https://placehold.co/200x200/171717/ff963b?text=azh"
+alt="Profile">
 
 <h1>azh</h1>
-
-<div class="username">just a guy on the internet_</div>
-
-<button class="heart" id="heart" onclick="like()">
-♥ <span id="likes">1</span>
-</button>
-
-</div>
+<div class="username">@azh</div>
+<p class="bio">i like apples</p>
+</section>
 
 <!-- NAVIGATION -->
 
 <nav>
 <button class="active" onclick="showTab('home',this)">Home</button>
 <button onclick="showTab('friends',this)">Friends</button>
-<button onclick="showTab('tools',this)">Tools</button>
-<button onclick="showTab('abyss',this)">Abyss</button>
 <button onclick="showTab('links',this)">Links</button>
 </nav>
 
 <!-- HOME -->
 
 <section id="home" class="content active">
-
 <div class="heading">about me</div>
-
-<div class="about">
-<p>i like apples</p>
-</div>
-
+<p style="font-size:14px;color:#aaa;line-height:2">
+i like apples
+<br>
+osa is super coolio.
+</p>
 </section>
 
 <!-- FRIENDS -->
 
 <section id="friends" class="content">
-
-<div class="heading">friends</div>
-
-<div class="grid">
+<div class="heading">my friends</div>
 
 <div class="friend">
-✦ Friend 1
-<small>online</small>
+<img src="https://placehold.co/100x100/292929/ff963b?text=T"
+alt="Test avatar">
+
+<div class="friend-info">
+test
+<small>friend</small>
 </div>
 
-<div class="friend">
-✧ Friend 2
-<small>online</small>
+<button onclick="openFriend('test','test')">
+View
+</button>
 </div>
-
-<div class="friend">
-✦ Friend 3
-<small>offline</small>
-</div>
-
-<div class="friend">
-✧ Friend 4
-<small>offline</small>
-</div>
-
-</div>
-
-</section>
-
-<!-- TOOLS -->
-
-<section id="tools" class="content">
-
-<div class="heading">tools</div>
-
-<a class="item" href="https://discord.com">Discord ↗</a>
-<a class="item" href="https://spotify.com">Spotify ↗</a>
-<a class="item" href="https://youtube.com">YouTube ↗</a>
-
-</section>
-
-<!-- ABYSS -->
-
-<section id="abyss" class="content">
-
-<div class="heading">the abyss</div>
-
-<p style="font-size:13px;color:#9989ae;line-height:2">
-you found your way into the abyss...
-</p>
 
 </section>
 
 <!-- LINKS -->
 
 <section id="links" class="content">
+<div class="heading">my links</div>
 
-<div class="heading">links</div>
+<a class="item" href="YOUR_DISCORD_LINK" target="_blank">
+Discord ↗
+</a>
 
-<a class="item" href="YOUR_DISCORD_LINK">Discord ↗</a>
-<a class="item" href="YOUR_YOUTUBE_LINK">YouTube ↗</a>
+<a class="item" href="YOUR_YOUTUBE_LINK" target="_blank">
+YouTube ↗
+</a>
 
 </section>
 
 </div>
 
-<!-- MUSIC PLAYER -->
-
-<div class="glass music">
-
-<button onclick="skipBack()">|◀</button>
-
-<button id="play" onclick="toggleMusic()">▶</button>
-
-<button onclick="skipForward()">▶|</button>
-
-<div class="track">
-<div class="track-name" id="trackName">add your music file</div>
-<div class="track-bar">
-<div class="track-progress" id="progress"></div>
-</div>
-</div>
-
-<input class="volume" type="range" min="0" max="1" step=".01" value=".5" id="volume">
+<footer>© 2026 azh · made with care</footer>
 
 </div>
 
-<footer>
-© 2026 azh · made with too much free time
-</footer>
+<!-- FRIEND WINDOW -->
 
+<div class="modal-bg" id="modal" onclick="backgroundClose(event)">
+<div class="modal">
+
+<div class="modal-top">
+<h2 id="friendName">test</h2>
+<button class="close" onclick="closeFriend()">✕ Close</button>
 </div>
 
-<audio id="audio"></audio>
+<p id="friendDescription">test</p>
+
+</div>
+</div>
+
+<!-- MUSIC -->
+
+<audio id="audio" src="./boyfriend.mp3" loop autoplay></audio>
+
+<div class="music-control">
+<button id="musicButton" onclick="toggleMusic()">♫</button>
+<span class="music-label">Volume</span>
+<input type="range" min="0" max="1" step=".01"
+value=".4" id="volume">
+</div>
 
 <script>
 
-/* TAB SYSTEM */
+/* TABS */
 
-function showTab(id,button) {
+function showTab(id,button){
  document.querySelectorAll('.content').forEach(el=>{
   el.classList.remove('active');
  });
-
  document.getElementById(id).classList.add('active');
 
  document.querySelectorAll('nav button').forEach(el=>{
   el.classList.remove('active');
  });
-
  button.classList.add('active');
 }
 
-/* LIKE BUTTON */
+/* FRIEND POPUP */
 
-let likes=1;
-let liked=false;
-
-function like(){
- liked=!liked;
- likes+=liked?1:-1;
- document.getElementById('likes').textContent=likes;
- document.getElementById('heart').style.background=
- liked?'#ff4d8722':'transparent';
+function openFriend(name,description){
+ document.getElementById('friendName').textContent=name;
+ document.getElementById('friendDescription').textContent=description;
+ document.getElementById('modal').classList.add('open');
 }
 
-/* MUSIC PLAYER */
+function closeFriend(){
+ document.getElementById('modal').classList.remove('open');
+}
+
+function backgroundClose(e){
+ if(e.target.id==='modal')closeFriend();
+}
+
+document.addEventListener('keydown',e=>{
+ if(e.key==='Escape')closeFriend();
+});
+
+/* MUSIC */
 
 const audio=document.getElementById('audio');
-const play=document.getElementById('play');
+const musicButton=document.getElementById('musicButton');
+const volume=document.getElementById('volume');
 
-document.getElementById('volume').addEventListener('input',e=>{
- audio.volume=e.target.value;
-});
+audio.volume=.4;
 
 function toggleMusic(){
- if(!audio.src){
-  alert('Add your music file to the audio element first!');
-  return;
- }
-
  if(audio.paused){
-  audio.play();
-  play.textContent='Ⅱ';
+  audio.play().then(()=>{
+   musicButton.textContent='♫';
+  }).catch(()=>{});
  }else{
   audio.pause();
-  play.textContent='▶';
+  musicButton.textContent='▶';
  }
 }
 
-function skipBack(){
- audio.currentTime=0;
-}
-
-function skipForward(){
- if(audio.duration) audio.currentTime=Math.min(audio.currentTime+10,audio.duration);
-}
-
-audio.addEventListener('ended',()=>{
- play.textContent='▶';
+volume.addEventListener('input',()=>{
+ audio.volume=Number(volume.value);
 });
 
-audio.addEventListener('timeupdate',()=>{
- if(audio.duration){
-  document.getElementById('progress').style.width=
-  (audio.currentTime/audio.duration*100)+'%';
+audio.play().catch(()=>{
+ musicButton.textContent='▶';
+});
+
+// Try again after the visitor interacts.
+document.addEventListener('click',function startMusic(){
+ if(audio.paused){
+  audio.play().then(()=>{
+   musicButton.textContent='♫';
+  }).catch(()=>{});
  }
-});
+},{once:true});
 
-/* ORANGE PARTICLE BACKGROUND */
+/* ORANGE PARTICLES */
 
 const canvas=document.getElementById('particles');
 const ctx=canvas.getContext('2d');
@@ -576,19 +526,17 @@ window.addEventListener('mouseout',e=>{
 });
 
 function animate(){
-
  ctx.clearRect(0,0,w,h);
 
  particles.forEach(p=>{
-
   let dx=mouse.x-p.x;
   let dy=mouse.y-p.y;
   let d=Math.hypot(dx,dy);
 
   if(d<150&&d>0){
    let force=(150-d)/150;
-   p.vx-=dx/d*force*.10;
-   p.vy-=dy/d*force*.10;
+   p.vx-=dx/d*force*.1;
+   p.vy-=dy/d*force*.1;
   }
 
   p.x+=p.vx;
@@ -630,6 +578,5 @@ resize();
 animate();
 
 </script>
-
 </body>
 </html>
