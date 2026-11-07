@@ -4,814 +4,261 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>azh</title>
-
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-
-:root{
- --orange:#ff963b;
- --orange-light:#ffad60;
-}
-
+:root{--orange:#ff963b;--orange-light:#ffad60}
 body{
- background:#050505;
- color:#eee;
- font-family:Arial,sans-serif;
- min-height:100vh;
- padding:35px 15px;
- overflow-x:hidden;
+ background:#050505;color:#eee;font-family:Arial,sans-serif;
+ min-height:100vh;padding:35px 15px;overflow-x:hidden;
+ background-image:radial-gradient(circle at 15% 25%,#ff7a2210 0,transparent 32%),radial-gradient(circle at 85% 75%,#ffad6010 0,transparent 30%);
+ background-size:140% 140%;animation:backgroundFlow 22s ease-in-out infinite alternate;
 }
-
-#particles{
- position:fixed;
- inset:0;
- width:100%;
- height:100%;
- pointer-events:none;
- z-index:0;
+@keyframes backgroundFlow{0%{background-position:0% 0%}100%{background-position:100% 100%}}
+body::before,body::after{
+ content:"";position:fixed;width:55vw;height:55vw;min-width:380px;min-height:380px;
+ border-radius:50%;filter:blur(100px);opacity:.15;pointer-events:none;z-index:0;
+ animation:ambientDrift 18s ease-in-out infinite alternate;
 }
-
-.container{
- position:relative;
- z-index:1;
- max-width:650px;
- margin:auto;
+body::before{background:radial-gradient(circle,#ff7a22 0%,transparent 68%);top:-24%;left:-18%}
+body::after{background:radial-gradient(circle,#ffb36e 0%,transparent 68%);right:-22%;bottom:-30%;animation-delay:-8s}
+@keyframes ambientDrift{
+ 0%{transform:translate3d(0,0,0) scale(.9)}
+ 50%{transform:translate3d(9vw,7vh,0) scale(1.12)}
+ 100%{transform:translate3d(-5vw,12vh,0) scale(1)}
 }
-
+#particles{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.container{position:relative;z-index:1;max-width:650px;margin:auto}
 .glass{
- background:rgba(18,16,15,.78);
- backdrop-filter:blur(20px);
- border:1px solid #ffffff20;
- border-radius:16px;
- box-shadow:0 10px 35px #0008;
+ background:rgba(75,75,75,.24);backdrop-filter:blur(24px) saturate(135%);
+ border:1px solid #ffffff25;border-radius:16px;
+ box-shadow:0 10px 45px #0007,inset 0 1px 0 #ffffff12;
 }
-
 .profile{text-align:center;padding:30px 20px}
-
 .avatar{
- width:115px;
- height:115px;
- border-radius:50%;
- object-fit:cover;
- border:2px solid var(--orange);
- box-shadow:0 0 25px #ff8c3244;
+ width:115px;height:115px;border-radius:50%;object-fit:cover;
+ border:2px solid var(--orange);box-shadow:0 0 25px #ff8c3244;
 }
-
-h1{font-size:30px;margin:15px 0 8px}
-.username{color:#ff9b45;font-size:13px}
-.bio{color:#aaa;font-size:14px;margin-top:18px}
-
+h1{
+ font-size:34px;margin:15px 0 8px;color:transparent;
+ background:linear-gradient(110deg,#fff 10%,#bdbdbd 30%,#fff 48%,#888 63%,#fff 82%);
+ background-size:250% auto;background-clip:text;-webkit-background-clip:text;
+ animation:flowText 5s linear infinite;filter:drop-shadow(0 0 12px #ffffff35);
+}
+@keyframes flowText{0%{background-position:100% center}100%{background-position:-150% center}}
 nav{
- display:flex;
- justify-content:center;
- flex-wrap:wrap;
- gap:9px;
- padding:15px 8px;
- border-top:1px solid #49301e;
- border-bottom:1px solid #49301e;
+ display:flex;justify-content:center;flex-wrap:wrap;gap:9px;padding:15px 8px;
+ border-top:1px solid #49301e;border-bottom:1px solid #49301e;
 }
-
 button{font-family:Arial,sans-serif;cursor:pointer}
-
 nav button{
- color:var(--orange-light);
- background:#ffffff06;
- border:1px solid #ff963b30;
- border-radius:10px;
- padding:10px 18px;
- font-size:13px;
- transition:all .25s ease;
+ color:var(--orange-light);background:#ffffff06;border:1px solid #ff963b30;
+ border-radius:10px;padding:10px 18px;font-size:13px;transition:all .25s ease;
 }
-
 nav button:hover{
- background:#ff963b25;
- color:white;
- border-color:var(--orange);
- transform:translateY(-3px);
- box-shadow:0 0 15px #ff963b55;
+ background:#ff963b25;color:white;border-color:var(--orange);
+ transform:translateY(-3px);box-shadow:0 0 15px #ff963b55;
 }
-
 nav button:active{transform:scale(.94)}
-
 nav button.active{
- background:var(--orange);
- color:#160d06;
- border-color:var(--orange-light);
+ background:var(--orange);color:#160d06;border-color:var(--orange-light);
  box-shadow:0 0 18px #ff963b66;
 }
-
-.content{
- display:none;
- padding:25px;
- min-height:220px;
-}
-
-.content.active{
- display:block;
- animation:fade .3s ease;
-}
-
-@keyframes fade{
- from{opacity:0;transform:translateY(8px)}
- to{opacity:1;transform:translateY(0)}
-}
-
-.heading{
- font-size:17px;
- color:var(--orange);
- margin-bottom:22px;
-}
-
+.content{display:none;padding:25px;min-height:220px}
+.content.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.heading{font-size:17px;color:var(--orange);margin-bottom:22px}
 .heading:before{content:"› ";color:var(--orange-light)}
-
-/* ABOUT ME */
-
-.about-details{
- display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- gap:10px;
- margin-top:20px;
-}
-
-.about-card{
- padding:13px;
- background:#ffffff08;
- border:1px solid #ffffff18;
- border-radius:12px;
- transition:.25s;
-}
-
-.about-card:hover{
- border-color:#ff963b66;
- box-shadow:0 0 15px #ff963b20;
- transform:translateY(-2px);
-}
-
-.about-card small{
- display:block;
- color:#888;
- font-size:11px;
- margin-bottom:7px;
-}
-
-.about-card strong{
- color:var(--orange-light);
- font-size:14px;
- font-weight:600;
-}
-
-.visits-card{
- grid-column:1/-1;
- display:flex;
- align-items:center;
- justify-content:space-between;
-}
-
-#visitCount{
- font-size:20px;
- color:var(--orange-light);
-}
-
-.visit-label{
- color:#888;
- font-size:11px;
- margin-top:3px;
-}
-
-/* FRIENDS */
-
 .friend{
- display:flex;
- align-items:center;
- gap:13px;
- padding:13px;
- background:#ffffff08;
- border:1px solid #ffffff18;
- border-radius:12px;
- margin-bottom:10px;
- transition:.25s;
+ display:flex;align-items:center;gap:13px;padding:13px;background:#ffffff08;
+ border:1px solid #ffffff18;border-radius:12px;margin-bottom:10px;transition:.25s;
 }
-
-.friend:hover{
- border-color:#ff963b66;
- box-shadow:0 0 15px #ff963b20;
- transform:translateY(-2px);
-}
-
-.friend img{
- width:43px;
- height:43px;
- border-radius:50%;
- object-fit:cover;
-}
-
+.friend:hover{border-color:#ff963b66;box-shadow:0 0 15px #ff963b20;transform:translateY(-2px)}
+.friend img{width:43px;height:43px;border-radius:50%;object-fit:cover}
 .friend-info{flex:1;font-size:14px}
-
-.friend-info small{
- display:block;
- color:#888;
- margin-top:5px;
-}
-
+.friend-info small{display:block;color:#888;margin-top:5px}
 .friend button{
- background:var(--orange);
- border:1px solid var(--orange-light);
- color:#170d05;
- padding:9px 15px;
- border-radius:9px;
- font-size:12px;
- transition:.25s;
+ background:var(--orange);border:1px solid var(--orange-light);color:#170d05;
+ padding:9px 15px;border-radius:9px;font-size:12px;transition:.25s;
 }
-
-.friend button:hover{
- box-shadow:0 0 16px #ff963b99;
- transform:scale(1.06);
-}
-
+.friend button:hover{box-shadow:0 0 16px #ff963b99;transform:scale(1.06)}
 .friend button:active{transform:scale(.94)}
-
-/* LINKS */
-
 .item{
- display:block;
- width:100%;
- padding:15px;
- margin-bottom:10px;
- border:1px solid #ffffff18;
- background:#ffffff08;
- text-decoration:none;
- color:var(--orange-light);
- border-radius:11px;
- font-size:13px;
- transition:all .25s ease;
- text-align:left;
+ display:block;width:100%;padding:15px;margin-bottom:10px;
+ border:1px solid #ffffff18;background:#ffffff08;text-decoration:none;
+ color:var(--orange-light);border-radius:11px;font-size:13px;
+ transition:all .25s ease;text-align:left;
 }
-
 button.item{cursor:pointer}
-
-.item:hover{
- border-color:var(--orange);
- background:#ff963b15;
- box-shadow:0 0 18px #ff963b35;
- transform:translateY(-3px);
-}
-
+.item:hover{border-color:var(--orange);background:#ff963b15;box-shadow:0 0 18px #ff963b35;transform:translateY(-3px)}
 .item:active{transform:scale(.98)}
-
-.item small{
- display:block;
- color:#888;
- margin-top:5px;
-}
-
-/* MODAL */
-
+.item small{display:block;color:#888;margin-top:5px}
 .modal-bg{
- position:fixed;
- inset:0;
- z-index:10;
- background:#000b;
- backdrop-filter:blur(7px);
- display:none;
- align-items:center;
- justify-content:center;
- padding:20px;
+ position:fixed;inset:0;z-index:10;background:#000b;backdrop-filter:blur(7px);
+ display:none;align-items:center;justify-content:center;padding:20px;
 }
-
 .modal-bg.open{display:flex}
-
 .modal{
- width:100%;
- max-width:350px;
- padding:25px;
- background:rgba(20,18,16,.96);
- border:1px solid #ff963b66;
- border-radius:16px;
- box-shadow:0 0 35px #ff963b33;
- animation:fade .2s ease;
+ width:100%;max-width:350px;padding:25px;background:rgba(20,18,16,.96);
+ border:1px solid #ff963b66;border-radius:16px;
+ box-shadow:0 0 35px #ff963b33;animation:fade .2s ease;
 }
-
-.modal-top{
- display:flex;
- align-items:center;
- justify-content:space-between;
- margin-bottom:20px;
-}
-
+.modal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
 .modal h2{font-size:19px;color:var(--orange-light)}
-
 .close{
- background:#ffffff08;
- border:1px solid #ffffff25;
- color:#aaa;
- padding:8px 12px;
- border-radius:9px;
- transition:.2s;
+ background:#ffffff08;border:1px solid #ffffff25;color:#aaa;
+ padding:8px 12px;border-radius:9px;transition:.2s;
 }
-
-.close:hover{
- color:white;
- border-color:var(--orange);
- box-shadow:0 0 12px #ff963b55;
-}
-
-.modal p{
- color:#aaa;
- font-size:13px;
- line-height:1.8;
-}
-
-footer{
- text-align:center;
- color:#666;
- font-size:11px;
- padding:25px;
-}
-
-/* MUSIC PLAYER */
-
+.close:hover{color:white;border-color:var(--orange);box-shadow:0 0 12px #ff963b55}
+.modal p{color:#aaa;font-size:13px;line-height:1.8}
+footer{text-align:center;color:#666;font-size:11px;padding:25px}
 .music-control{
- position:fixed;
- z-index:5;
- bottom:20px;
- right:20px;
- display:flex;
- align-items:center;
- gap:13px;
- padding:14px 17px;
- background:rgba(20,18,16,.95);
- border:1px solid #ff963b77;
- border-radius:15px;
- backdrop-filter:blur(20px);
- box-shadow:0 5px 25px #0008,0 0 15px #ff963b20;
- transition:.25s;
+ position:fixed;z-index:5;bottom:20px;right:20px;display:flex;align-items:center;
+ padding:14px 17px;background:rgba(20,18,16,.95);
+ border:1px solid #ff963b77;border-radius:15px;backdrop-filter:blur(20px);
+ box-shadow:0 5px 25px #0008,0 0 15px #ff963b20;transition:.25s;
 }
-
-.music-control:hover{
- box-shadow:0 5px 25px #0008,0 0 20px #ff963b44;
-}
-
+.music-control:hover{box-shadow:0 5px 25px #0008,0 0 20px #ff963b44}
 #musicButton{
- width:36px;
- height:36px;
- display:grid;
- place-items:center;
- border-radius:11px;
- background:#ff963b20;
- border:1px solid #ff963b66;
- color:var(--orange-light);
- font-size:17px;
- transition:.25s;
+ width:36px;height:36px;display:grid;place-items:center;border-radius:11px;
+ background:#ff963b20;border:1px solid #ff963b66;color:var(--orange-light);
+ font-size:17px;transition:.25s;
 }
-
-#musicButton:hover{
- background:var(--orange);
- color:#160d06;
- box-shadow:0 0 18px #ff963b88;
- transform:scale(1.08);
-}
-
+#musicButton:hover{background:var(--orange);color:#160d06;box-shadow:0 0 18px #ff963b88;transform:scale(1.08)}
 #musicButton:active{transform:scale(.9)}
-
-.volume-area{
- display:flex;
- flex-direction:column;
- gap:7px;
- width:110px;
-}
-
-.volume-top{display:flex;justify-content:space-between}
-.music-label{color:#aaa;font-size:11px}
-.volume-percent{color:var(--orange-light);font-size:10px}
-
-#volume{
- appearance:none;
- -webkit-appearance:none;
- width:100%;
- height:5px;
- border-radius:10px;
- outline:none;
- cursor:pointer;
- background:#ffffff25;
-}
-
-#volume::-webkit-slider-thumb{
- appearance:none;
- -webkit-appearance:none;
- width:14px;
- height:14px;
- border-radius:50%;
- background:var(--orange-light);
- border:2px solid white;
- box-shadow:0 0 10px #ff963b99;
- transition:.2s;
-}
-
-#volume::-webkit-slider-thumb:hover{transform:scale(1.3)}
-
-#volume::-moz-range-thumb{
- width:11px;
- height:11px;
- border-radius:50%;
- background:var(--orange-light);
- border:2px solid white;
- box-shadow:0 0 10px #ff963b99;
-}
-
 .music-error{
- position:fixed;
- bottom:85px;
- right:20px;
- z-index:6;
- color:#ffad60;
- background:#17110d;
- border:1px solid #ff963b66;
- border-radius:9px;
- padding:10px 14px;
- font-size:11px;
- display:none;
- max-width:260px;
+ position:fixed;bottom:85px;right:20px;z-index:6;color:#ffad60;
+ background:#17110d;border:1px solid #ff963b66;border-radius:9px;
+ padding:10px 14px;font-size:11px;display:none;max-width:260px;
 }
-
+.about-details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:20px}
+.about-card{padding:13px;background:#ffffff08;border:1px solid #ffffff18;border-radius:12px;transition:.25s}
+.about-card:hover{border-color:#ff963b66;box-shadow:0 0 15px #ff963b20;transform:translateY(-2px)}
+.about-card small{display:block;color:#888;font-size:11px;margin-bottom:7px}
+.about-card strong{color:var(--orange-light);font-size:14px;font-weight:600}
 @media(max-width:500px){
- nav{gap:5px}
- nav button{padding:9px 12px}
+ nav{gap:5px}nav button{padding:9px 12px}
  .music-control{bottom:12px;right:12px}
  .music-error{bottom:85px;right:12px}
 }
-
-@media(max-width:360px){
- .about-details{grid-template-columns:1fr}
- .visits-card{grid-column:auto}
-}
 </style>
 </head>
-
 <body>
-
 <canvas id="particles"></canvas>
-
 <div class="container">
 <div class="glass">
-
 <section class="profile">
-<img class="avatar"
-src="https://placehold.co/200x200/171717/ff963b?text=azh"
-alt="Profile">
-
+<img class="avatar" src="https://placehold.co/200x200/171717/ff963b?text=azh" alt="Profile">
 <h1>azh</h1>
-<div class="username">@azh</div>
-<p class="bio">i like apples</p>
 </section>
-
 <nav>
 <button class="active" onclick="showTab('home',this)">Home</button>
 <button onclick="showTab('friends',this)">Friends</button>
 <button onclick="showTab('links',this)">Links</button>
 </nav>
-
-<!-- HOME -->
-
 <section id="home" class="content active">
 <div class="heading">about me</div>
-
-<p style="font-size:14px;color:#aaa;line-height:2">
-i like apples<br>
-osa is super coolio.
-</p>
-
 <div class="about-details">
-
-<div class="about-card">
-<small>AGE</small>
-<strong>14</strong>
-</div>
-
-<div class="about-card">
-<small>BIRTHDAY</small>
-<strong>October 22</strong>
-</div>
-
-<div class="about-card">
-<small>TIMEZONE</small>
-<strong>CST</strong>
-</div>
-
-<div class="about-card visits-card">
-<div>
-<small>WEBSITE VISITS</small>
-<div class="visit-label">Total page views</div>
-</div>
-<strong id="visitCount">Loading...</strong>
-</div>
-
+<div class="about-card"><small>AGE</small><strong>14</strong></div>
+<div class="about-card"><small>BIRTHDAY</small><strong>October 22</strong></div>
+<div class="about-card"><small>TIMEZONE</small><strong>CST</strong></div>
 </div>
 </section>
-
-<!-- FRIENDS -->
-
 <section id="friends" class="content">
 <div class="heading">my friends</div>
-
 <div class="friend">
 <img src="https://placehold.co/100x100/292929/ff963b?text=T" alt="Friend">
-<div class="friend-info">
-test
-<small>friend</small>
-</div>
+<div class="friend-info">test<small>friend</small></div>
 <button onclick="openFriend('test','test')">View</button>
 </div>
-
 </section>
-
-<!-- LINKS -->
-
 <section id="links" class="content">
 <div class="heading">my links</div>
-
-<a class="item"
-href="https://www.youtube.com/@Azhhhhhhh"
-target="_blank"
-rel="noopener noreferrer">
-YouTube ↗
-<small>@Azhhhhhhh</small>
-</a>
-
-<button class="item" onclick="copyDiscord()">
-Discord · Copy username
-<small id="discordStatus">azhhhhhh</small>
-</button>
-
+<a class="item" href="https://www.youtube.com/@Azhhhhhhh" target="_blank" rel="noopener noreferrer">YouTube ↗<small>@Azhhhhhhh</small></a>
+<button class="item" onclick="copyDiscord()">Discord · Copy username<small id="discordStatus">azhhhhhh</small></button>
 </section>
-
 </div>
-
 <footer>© 2026 azh · made with care</footer>
 </div>
-
-<!-- FRIEND WINDOW -->
-
 <div class="modal-bg" id="modal" onclick="backgroundClose(event)">
 <div class="modal">
-<div class="modal-top">
-<h2 id="friendName">test</h2>
-<button class="close" onclick="closeFriend()">✕ Close</button>
-</div>
+<div class="modal-top"><h2 id="friendName">test</h2><button class="close" onclick="closeFriend()">✕ Close</button></div>
 <p id="friendDescription">test</p>
 </div>
 </div>
-
-<!-- MUSIC -->
-
 <audio id="audio" src="./boyfriend%281%29.mp3" loop preload="auto"></audio>
-
-<div class="music-control">
-<button id="musicButton" onclick="toggleMusic()" aria-label="Play music">▶</button>
-
-<div class="volume-area">
-<div class="volume-top">
-<span class="music-label">Volume</span>
-<span class="volume-percent" id="volumePercent">40%</span>
-</div>
-
-<input type="range" min="0" max="100" value="40" id="volume">
-</div>
-</div>
-
-<div class="music-error" id="musicError">
-Couldn't load the song. Check that boyfriend(1).mp3 is uploaded beside index.html.
-</div>
-
+<div class="music-control"><button id="musicButton" onclick="toggleMusic()" aria-label="Play or pause music">▶</button></div>
+<div class="music-error" id="musicError">Couldn't load the song. Check that boyfriend(1).mp3 is uploaded beside index.html.</div>
 <script>
-
-/* SHARED VISITOR COUNTER */
-
-async function loadVisitCount(){
- const display=document.getElementById('visitCount');
-
- const counterUrl=
- 'https://api.counterapi.dev/v1/azh-profile-2026/site-visits/up';
-
- try{
-  const response=await fetch(counterUrl,{cache:'no-store'});
-
-  if(!response.ok) throw new Error('Counter unavailable');
-
-  const data=await response.json();
-
-  if(typeof data.count!=='number'){
-   throw new Error('Invalid counter response');
-  }
-
-  display.textContent=data.count.toLocaleString();
-
- }catch(error){
-  display.textContent='Unavailable';
-  console.error('Visit counter error:',error);
- }
-}
-
-loadVisitCount();
-
-/* TABS */
-
 function showTab(id,button){
- document.querySelectorAll('.content').forEach(el=>{
-  el.classList.remove('active');
- });
-
+ document.querySelectorAll('.content').forEach(el=>el.classList.remove('active'));
  document.getElementById(id).classList.add('active');
-
- document.querySelectorAll('nav button').forEach(el=>{
-  el.classList.remove('active');
- });
-
+ document.querySelectorAll('nav button').forEach(el=>el.classList.remove('active'));
  button.classList.add('active');
 }
-
-/* FRIEND POPUP */
-
 function openFriend(name,description){
  document.getElementById('friendName').textContent=name;
  document.getElementById('friendDescription').textContent=description;
  document.getElementById('modal').classList.add('open');
 }
-
-function closeFriend(){
- document.getElementById('modal').classList.remove('open');
-}
-
-function backgroundClose(e){
- if(e.target.id==='modal')closeFriend();
-}
-
-document.addEventListener('keydown',e=>{
- if(e.key==='Escape')closeFriend();
-});
-
-/* DISCORD */
-
+function closeFriend(){document.getElementById('modal').classList.remove('open')}
+function backgroundClose(e){if(e.target.id==='modal')closeFriend()}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFriend()});
 async function copyDiscord(){
  const status=document.getElementById('discordStatus');
-
- try{
-  await navigator.clipboard.writeText('azhhhhhh');
-  status.textContent='Copied!';
- }catch(e){
-  status.textContent='azhhhhhh';
- }
-
- setTimeout(()=>{
-  status.textContent='azhhhhhh';
- },2000);
+ try{await navigator.clipboard.writeText('azhhhhhh');status.textContent='Copied!'}
+ catch(e){status.textContent='azhhhhhh'}
+ setTimeout(()=>{status.textContent='azhhhhhh'},2000);
 }
-
-/* MUSIC PLAYER */
-
 const audio=document.getElementById('audio');
 const musicButton=document.getElementById('musicButton');
-const volume=document.getElementById('volume');
-const volumePercent=document.getElementById('volumePercent');
 const musicError=document.getElementById('musicError');
-
 audio.volume=.4;
-
-function updateVolume(){
- const value=Number(volume.value);
-
- audio.volume=value/100;
- volumePercent.textContent=value+'%';
-
- volume.style.background=
- `linear-gradient(to right,
- #ff963b 0%,
- #ff963b ${value}%,
- #ffffff25 ${value}%,
- #ffffff25 100%)`;
-}
-
-volume.addEventListener('input',updateVolume);
-updateVolume();
-
-function updateMusicButton(){
- musicButton.textContent=audio.paused?'▶':'♫';
-}
-
+function updateMusicButton(){musicButton.textContent=audio.paused?'▶':'♫'}
 async function toggleMusic(){
  musicError.style.display='none';
-
  if(audio.paused){
-  try{
-   await audio.play();
-   updateMusicButton();
-  }catch(error){
-   musicError.style.display='block';
-   updateMusicButton();
-  }
- }else{
-  audio.pause();
-  updateMusicButton();
- }
+  try{await audio.play();updateMusicButton()}
+  catch(error){musicError.style.display='block';updateMusicButton()}
+ }else{audio.pause();updateMusicButton()}
 }
-
 audio.addEventListener('play',updateMusicButton);
 audio.addEventListener('pause',updateMusicButton);
-
-audio.addEventListener('error',()=>{
- musicError.style.display='block';
- updateMusicButton();
-});
-
-/* PARTICLES */
-
+audio.addEventListener('error',()=>{musicError.style.display='block';updateMusicButton()});
 const canvas=document.getElementById('particles');
 const ctx=canvas.getContext('2d');
-
 let w,h,particles=[];
 let mouse={x:-1000,y:-1000};
-
 function resize(){
- w=canvas.width=innerWidth;
- h=canvas.height=innerHeight;
- particles=[];
-
- for(let i=0;i<85;i++){
-  particles.push({
-   x:Math.random()*w,
-   y:Math.random()*h,
-   vx:(Math.random()-.5)*.4,
-   vy:(Math.random()-.5)*.4,
-   r:Math.random()*1.7+.5
-  });
+ w=canvas.width=innerWidth;h=canvas.height=innerHeight;particles=[];
+ for(let i=0;i<125;i++){
+  particles.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.65,vy:(Math.random()-.5)*.65,r:Math.random()*1.7+.5});
  }
 }
-
 window.addEventListener('resize',resize);
-
-window.addEventListener('mousemove',e=>{
- mouse.x=e.clientX;
- mouse.y=e.clientY;
-});
-
-window.addEventListener('mouseout',e=>{
- if(!e.relatedTarget){
-  mouse.x=-1000;
-  mouse.y=-1000;
- }
-});
-
+window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+window.addEventListener('mouseout',e=>{if(!e.relatedTarget){mouse.x=-1000;mouse.y=-1000}});
 function animate(){
  ctx.clearRect(0,0,w,h);
-
  particles.forEach(p=>{
-  let dx=mouse.x-p.x;
-  let dy=mouse.y-p.y;
-  let d=Math.hypot(dx,dy);
-
-  if(d<150&&d>0){
-   let force=(150-d)/150;
-   p.vx-=dx/d*force*.1;
-   p.vy-=dy/d*force*.1;
-  }
-
-  p.x+=p.vx;
-  p.y+=p.vy;
-
-  p.vx*=.995;
-  p.vy*=.995;
-
-  if(p.x<0||p.x>w)p.vx*=-1;
-  if(p.y<0||p.y>h)p.vy*=-1;
-
-  ctx.beginPath();
-  ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-  ctx.fillStyle='rgba(255,140,50,.8)';
-  ctx.shadowBlur=12;
-  ctx.shadowColor='#ff8c32';
-  ctx.fill();
-  ctx.shadowBlur=0;
+  let dx=mouse.x-p.x,dy=mouse.y-p.y,d=Math.hypot(dx,dy);
+  if(d<150&&d>0){let force=(150-d)/150;p.vx-=dx/d*force*.1;p.vy-=dy/d*force*.1}
+  p.x+=p.vx;p.y+=p.vy;p.vx*=.995;p.vy*=.995;
+  if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;
+  ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+  ctx.fillStyle='rgba(255,140,50,.8)';ctx.shadowBlur=12;ctx.shadowColor='#ff8c32';ctx.fill();ctx.shadowBlur=0;
  });
-
  particles.forEach((p,i)=>{
   particles.slice(i+1).forEach(q=>{
    let d=Math.hypot(p.x-q.x,p.y-q.y);
-
-   if(d<105){
-    ctx.beginPath();
-    ctx.moveTo(p.x,p.y);
-    ctx.lineTo(q.x,q.y);
-    ctx.strokeStyle=`rgba(255,140,50,${(1-d/105)*.2})`;
-    ctx.stroke();
+   if(d<125){
+    ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);
+    ctx.strokeStyle=`rgba(255,140,50,${(1-d/125)*.25})`;ctx.stroke();
    }
   });
  });
-
  requestAnimationFrame(animate);
 }
-
-resize();
-animate();
-
+resize();animate();
 </script>
 </body>
 </html>
